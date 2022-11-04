@@ -27,28 +27,28 @@ BONUS: Add in a password reset to allow user to restart entering their password 
 //Nucleo Reference Manual: https://www.st.com/resource/en/reference_manual/dm00310109-stm32l4-series-advanced-armbased-32bit-mcus-stmicroelectronics.pdf
 
 //Global Variables:
-InterruptIn push_button(PC_13);
+InterruptIn push_button(PC_13);             //declaring Interrupts
 InterruptIn c1(PC_12,PullDown);
 InterruptIn c2(PC_11,PullDown);
 InterruptIn c3(PC_10,PullDown);
 InterruptIn c4(PC_9,PullDown);
 
-void light_up(void);
+void light_up(void);            //declaring functions
 void column1(void);
 void column2(void);
 void column3(void);
 void column4(void);
 
-CSE321_LCD lcd(16,2,LCD_5x10DOTS,PF_0,PF_1);            //either LCD_5x10DOTS or LCD_5x8DOTS
+CSE321_LCD lcd(16,2,LCD_5x10DOTS,PF_0,PF_1);           
 //main inputs and outputs:
 
 //Main:
 int main(){
-    lcd.begin();
-    lcd.clear();
+    lcd.begin();                            //enabling lcd
+    lcd.clear();    
     lcd.setCursor(0,0);
     wait_us(10);
-    lcd.print("LOCKED");
+    lcd.print("LOCKED");                    //starting with it locked
     
     //num_1.enable_irq();
     RCC->AHB2ENR |= 0x4;                    //enabling GPIOC clock
@@ -84,7 +84,7 @@ int main(){
     c4.enable_irq();
 
         
-    c1.rise(&light_up);
+    c1.rise(&column1);
     c2.rise(&column2);
     c3.rise(&column3);        
     c4.rise(&column4);
@@ -110,16 +110,7 @@ int main(){
         GPIOD->ODR&=~(0x80);                    //and turn off
         
         
-        /*if((GPIOC->IDR&0x1000)==0x1000){
-            lcd.clear();
-            wait_us(1000);
-            lcd.print("BIXA");
-        }
-        if((GPIOC->IDR&0x200)==0x200){
-            lcd.clear();
-            wait_us(1000);
-            lcd.print("BIXA");
-        }*/
+    
     }
     
     return 0;
