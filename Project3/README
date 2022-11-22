@@ -1,11 +1,19 @@
 -------------------
 About
 -------------------
-Project Description: 
+Project Description: This Project will be inspired on a fire alarm. The goal of this project is to activate a fire alarm properly and efficiently, 
+giving the user feedback on when the fire alarm is about to be activated. To accomplish this, the project will simulate a fire alarm with a DHT11 sensor, 
+an LED, and Buzzer. The LED will light up whenever the DHT11 reaches a certain “high, but not worrisome”, temperature. And when the alarm is activated after 
+it reaches a temperature considered dangerous, the LED will now blink, and the Buzzer will turn on. 
 
 --------------------
 Features
 --------------------
+- An LCD printing the state of the fire alarm
+- An LED that will blink according to the state of the fire alarm
+- A DHT11 thta will input temeprature and humidity data
+- A buzzer that will output sound when the alarm is triggered
+- A matrix keypad that will be used as an overall enable with 2 buttons
 
 
 --------------------
@@ -14,8 +22,12 @@ Required Materials
 -Nucleo L4R5ZI
 -LCD
 -LED
+-Buzzer
+-Matrix Keypad
+-Breadboard
 -Resistors
 -Wires
+-DHT11
 
 
 --------------------
@@ -42,11 +54,11 @@ LCD built-in functions based on the 1802.cpp and 1802.h files:
 -<lcdObject>.setCursor(x,y)
 -<lcdObject>.print("string")
 
-InterruptIn
 
 ----------
 Custom Functions
 ----------
-
+led_blink()
+  makes an LED connected to PC8 blink "forever"
 
 
