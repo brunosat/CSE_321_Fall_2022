@@ -2,16 +2,16 @@
 About
 -------------------
 Project Description: This Project will be inspired on a fire alarm. The goal of this project is to activate a fire alarm properly and efficiently, 
-giving the user feedback on when the fire alarm is about to be activated. To accomplish this, the project will simulate a fire alarm with a DHT11 sensor, 
-an LED, and Buzzer. The LED will light up whenever the DHT11 reaches a certain “high, but not worrisome”, temperature. And when the alarm is activated after 
-it reaches a temperature considered dangerous, the LED will now blink, and the Buzzer will turn on. 
-
+giving the user feedback on when the fire alarm is about to be activated. To accomplish this, the project will simulate a fire alarm behavior with a DHT11 sensor, 
+an LED, and Buzzer. The LED will light up whenever the DHT11 reaches a certain “high, but not worrisome”, temperature*. And when the alarm is activated after 
+it reaches a temperature* considered dangerous, the LED will now blink, and the Buzzer will turn on. 
+*For this project's purposes, the sensor will be based on humidity
 --------------------
 Features
 --------------------
-- An LCD printing the state of the fire alarm
+- An LCD that will print acoording to the state of the fire alarm
 - An LED that will blink according to the state of the fire alarm
-- A DHT11 thta will input temeprature and humidity data
+- A DHT11 that will input temeprature and humidity data
 - A buzzer that will output sound when the alarm is triggered
 - A matrix keypad that will be used as an overall enable with 2 buttons
 
@@ -40,11 +40,20 @@ Libraries:
 mbed.h
 1802.h                    
 1802.cpp    
+DHT.h
+DHT.cpp
 
 --------------------
 Getting Started
 -------------------- 
+Gather the materials needed, according to the Required Materials
+Connect the peripherals correctly. (In this specific project, PF_0 and PF_1 were used as the data pins for the LCD; PD_4 was used as the data pin for the DHT11; 
+PC_10 and PC_11 were used as unable and enable, respectively; PC_8 was used as the pin for the LED; PD_7 was used for the Buzzer).
 
+Once system is built and running, a wet paper towel can be used to increase momentarily the humidity measured by the DHT11. An efficient way of doing it is by 
+touching the wet paper towel at the sensor. 
+
+The alarm system can be turned on and off by pressing the keys 1 (on) and 2 (off) in the Keypad Matrix.
 ----------
 API and Built In Elements Used
 ----------
@@ -53,12 +62,31 @@ LCD built-in functions based on the 1802.cpp and 1802.h files:
 -<lcdObject>.clear()
 -<lcdObject>.setCursor(x,y)
 -<lcdObject>.print("string")
-
+-<dhtObject>.read()
+-<dhtObject>.getHumidity()
 
 ----------
 Custom Functions
 ----------
-led_blink()
-  makes an LED connected to PC8 blink "forever"
+void led_blink(void);
+  makes an LED connected to PC8 blink
+  
+void led_off(void);
+  turns LED off
+  
+void led_on(void);
+  turns LED on
+  
+void turn_on(void);    
+  turns system on
+  
+void turn_off(void);
+  turns system off
+  
+void alarm_on(void);
+  turns alarm on
+  
+void alarm_off(void);
+  turns alarm off
 
 
